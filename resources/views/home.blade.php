@@ -60,7 +60,7 @@
                 </li>
             </ul>
 
-            <form action="#" class="form-inline float-right hidden-sm-down">
+            <form action="/search" class="form-inline float-right hidden-sm-down">
                 <span {{ $errors->has('search') ? 'has-danger' : '' }}>
                     <input name="search" type="text" class="form-control form-search" placeholder="Search">
                 </span>
@@ -73,7 +73,7 @@
                         <img class="rounded-circle" src="{{ asset('images/no-thumb.png') }}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url('account') }}">
                             <span class="icon icon-cog"></span> 設定
                         </a>
                         <a class="dropdown-item" href="{{ url('logout') }}"
@@ -94,16 +94,16 @@
             <div class="card card-profile mb-4">
                 <div class="card-header bg-danger"></div>
                 <div class="card-block text-center">
-                    <a href="#">
+                    <a href="profile">
                         <img class="avatar card-profile-img" src="{{ asset('images/no-thumb.png') }}">
                     </a>
 
                     <div class="card-title my-2">
-                        <a href="#" class="font-weight-bold text-inherit d-block">
-                            牧野
+                        <a href="profile" class="font-weight-bold text-inherit d-block">
+                            {{ $display_name }}
                         </a>
-                        <a href="#" class="text-inherit text-muted">
-                            &#64;snicmakino
+                        <a href="profile" class="text-inherit text-muted">
+                            &#64;{{ $url_name }}
                         </a>
                     </div>
 
@@ -111,13 +111,13 @@
 
                     <ul class="card-profile-stats">
                         <li class="card-profile-stat">
-                            <a href="#" class="text-inherit">
+                            <a href="/following" class="text-inherit">
                                 <span class="text-muted">フォロー</span>
                                 <strong class="d-block">30</strong>
                             </a>
                         </li>
                         <li class="card-profile-stat">
-                            <a href="#" class="text-inherit">
+                            <a href="/followers" class="text-inherit">
                                 <span class="text-muted">フォロワー</span>
                                 <strong class="d-block">7</strong>
                             </a>
@@ -129,8 +129,15 @@
 
         <div class="col-lg-6">
             <ul class="list-group media-list-stream mb-4">
+
+                <!--                header('Content-type: text/html');-->
+<!--                <?php //$users = DB::table('tweets')->get(); ?>-->
+
+
+
                 <li class="media list-group-item p-4 {{ $errors->has('body') ? 'has-danger' : '' }}">
-                    <form method="POST" action="#" class="input-group">
+                    {{--<form method="POST" action="/test" class="input-group">--}}
+                    <form method="POST" action="/tweet" name="tweet_now" class="input-group">
                         {{ csrf_field() }}
 
                         <input name="body" type="text" class="form-control" placeholder="いまどうしてる？">
@@ -147,6 +154,38 @@
                         </div>
                     @endif
                 </li>
+
+
+
+
+                @foreach($tweets as $tweet)
+                    <li class="media list-group-item p-4">
+                        <article class="d-flex w-100">
+                            <a class="font-weight-bold text-inherit d-block" href="/account">
+                                <img class="media-object d-flex align-self-start mr-3"
+                                     src="{{ asset('images/no-thumb.png') }}">
+                            </a>
+                            <div class="media-body">
+                                <div class="mb-2">
+                                    <a class="text-inherit" href="/profile">
+                                        <strong>{{ $display_name }}</strong>
+                                        <span class="text-muted">&#64;{{ $url_name }}</span>
+                                    </a>
+                                    -
+                                    <time class="small text-muted">6時間</time>
+                                </div>
+
+                                <p>
+                                    {{ $tweet->body }}
+                                </p>
+                            </div>
+                        </article>
+                    </li>
+                @endforeach
+
+
+
+
 
                 <li class="media list-group-item p-4">
                     <article class="d-flex w-100">
@@ -194,7 +233,6 @@
                         </div>
                     </article>
                 </li>
-
             </ul>
         </div>
 

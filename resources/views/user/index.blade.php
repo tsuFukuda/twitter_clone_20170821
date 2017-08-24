@@ -44,7 +44,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="hidden-md-up">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('user') }}">
                         <span class="icon icon-cog"></span> 設定
                     </a>
                 </li>

@@ -44,7 +44,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="hidden-md-up">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('account') }}">
                         <span class="icon icon-cog"></span> 設定
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                         <img class="rounded-circle" src="{{ asset('images/no-thumb.png') }}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url('account') }}">
                             <span class="icon icon-cog"></span> 設定
                         </a>
                         <a class="dropdown-item" href="{{ url('logout') }}"
@@ -99,21 +99,21 @@
                     </a>
 
                     <div class="card-title my-2">
-                        <a class="font-weight-bold text-inherit d-block" href="#">牧野</a>
+                        <a class="font-weight-bold text-inherit d-block" href="#">{{ $url_name }}</a>
                         <span class="text-muted">&#64;snicmakino</span>
                     </div>
                 </div>
             </div>
 
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action justify-content-between">
+                <a href="{{ url('account') }}" class="list-group-item list-group-item-action justify-content-between">
                     アカウント
                     <span class="icon icon-chevron-right"></span>
                 </a>
             </div>
 
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action justify-content-between">
+                <a href="{{ 'profile' }}" class="list-group-item list-group-item-action justify-content-between">
                     プロフィール
                     <span class="icon icon-chevron-right"></span>
                 </a>
@@ -140,7 +140,7 @@
                             <label for="display_name" class="col-3 col-form-label">表示名</label>
                             <div class="col-9">
                                 <input name="display_name" type="text" id="display_name" class="form-control"
-                                       value="牧野">
+                                       value="{{ $display_name }}">
 
                                 @if ($errors->has('display_name'))
                                     <div class="form-control-feedback">

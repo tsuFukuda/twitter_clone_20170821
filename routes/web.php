@@ -24,7 +24,9 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
+//Route::get('home/create', 'HomeController@create');
 Route::get('home', 'HomeController@index')->name('home');
+Route::post('tweet', 'HomeController@register_tweet_table');
 
 
 Route::get('account', 'SampleController@account');

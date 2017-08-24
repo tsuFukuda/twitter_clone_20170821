@@ -44,7 +44,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="hidden-md-up">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('account') }}">
                         <span class="icon icon-cog"></span> 設定
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                         <img class="rounded-circle" src="{{ asset('images/no-thumb.png') }}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url('account') }}">
                             <span class="icon icon-cog"></span> 設定
                         </a>
                         <a class="dropdown-item" href="{{ url('logout') }}"
@@ -99,21 +99,21 @@
                     </a>
 
                     <div class="card-title my-2">
-                        <a class="font-weight-bold text-inherit d-block" href="#">牧野</a>
-                        <span class="text-muted">&#64;snicmakino</span>
+                        <a class="font-weight-bold text-inherit d-block" href="#">{{ $display_name }}</a>
+                        <span class="text-muted">&#64;{{ $url_name }}</span>
                     </div>
                 </div>
             </div>
 
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action justify-content-between">
+                <a href="account" class="list-group-item list-group-item-action justify-content-between">
                     アカウント
                     <span class="icon icon-chevron-right"></span>
                 </a>
             </div>
 
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action justify-content-between">
+                <a href="profile" class="list-group-item list-group-item-action justify-content-between">
                     プロフィール
                     <span class="icon icon-chevron-right"></span>
                 </a>
@@ -138,7 +138,7 @@
                             <label for="url_name" class="col-4 col-form-label">ユーザー名</label>
                             <div class="col-8">
                                 <input name="url_name" type="text" maxlength="15" id="url_name" class="form-control"
-                                       value="snicmakino">
+                                       value="{{ $url_name }}">
 
                                 @if ($errors->has('url_name'))
                                     <div class="form-control-feedback">
@@ -151,7 +151,7 @@
                             <label for="email" class="col-4 col-form-label">メールアドレス</label>
                             <div class="col-8">
                                 <input name="email" type="email" id="email" class="form-control"
-                                       value="makino@asia-quest.jp">
+                                       value="{{ $user_address }}">
 
                                 @if ($errors->has('email'))
                                     <div class="form-control-feedback">
