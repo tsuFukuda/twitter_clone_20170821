@@ -108,7 +108,7 @@
                     </div>
 
                     <p class="mb-4">Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中</p>
-{{--                    <p class="mb-4">{{ $remember_token }}</p>--}}
+                    {{--                    <p class="mb-4">{{ $remember_token }}</p>--}}
 
                     <ul class="card-profile-stats">
                         <li class="card-profile-stat">
@@ -132,7 +132,6 @@
             <ul class="list-group media-list-stream mb-4">
 
 
-
                 <li class="media list-group-item p-4 {{ $errors->has('body') ? 'has-danger' : '' }}">
                     {{--<form method="POST" action="/test" class="input-group">--}}
                     <form method="POST" action="/tweet" name="tweet_now" class="input-group">
@@ -154,6 +153,22 @@
                 </li>
 
 
+                {{--時間の差分計算--}}
+                <?php
+                function format_time($timestamp)
+                {
+                    if (floor($timestamp / (60 * 60 * 24)) > 0) {
+                        echo floor($timestamp / (60 * 60 * 24)) . "日";
+                    } else if (floor($timestamp / (60 * 60)) > 0) {
+                        echo floor($timestamp / (60 * 60)) . "h";
+                    } else if (floor($timestamp / 60) > 0) {
+                        echo floor($timestamp / 60) . "m";
+                    } else {
+                        echo floor($timestamp) . "s";
+                    }
+                }
+                ?>
+
                 @foreach($tweets as $tweet)
                     <li class="media list-group-item p-4">
                         <article class="d-flex w-100">
@@ -168,9 +183,10 @@
                                         <span class="text-muted">&#64;{{ $tweet->user->url_name }}</span>
                                     </a>
                                     -
-                                    <time class="small text-muted">6時間</time>
+                                    {{--<time class="small text-muted">{{ time_diff(str($tweet->updated_at), str(date('Y-m-d H:i:s'))) }}</time>--}}
+                                    <time class="small text-muted">{{ format_time(strtotime(date('Y-m-d H:i:s'))-strtotime($tweet->updated_at)) }}</time>
                                     {{--現在時刻取得--}}
-                                    {{--<time class="small text-muted">{{ date('Y/m/d H:i:s') }}</time>--}}
+                                    {{--<time class="small text-muted">{{ time_diff(date('Y-m-d H:i:s'), )}}</time>--}}
                                 </div>
 
                                 <p>
@@ -185,50 +201,50 @@
 
 
                 {{--<li class="media list-group-item p-4">--}}
-                    {{--<article class="d-flex w-100">--}}
-                        {{--<a class="font-weight-bold text-inherit d-block" href="#">--}}
-                            {{--<img class="media-object d-flex align-self-start mr-3"--}}
-                                 {{--src="{{ asset('images/no-thumb.png') }}">--}}
-                        {{--</a>--}}
-                        {{--<div class="media-body">--}}
-                            {{--<div class="mb-2">--}}
-                                {{--<a class="text-inherit" href="#">--}}
-                                    {{--<strong>牧野</strong>--}}
-                                    {{--<span class="text-muted">&#64;snicmakino</span>--}}
-                                {{--</a>--}}
-                                {{-----}}
-                                {{--<time class="small text-muted">6時間</time>--}}
-                            {{--</div>--}}
+                {{--<article class="d-flex w-100">--}}
+                {{--<a class="font-weight-bold text-inherit d-block" href="#">--}}
+                {{--<img class="media-object d-flex align-self-start mr-3"--}}
+                {{--src="{{ asset('images/no-thumb.png') }}">--}}
+                {{--</a>--}}
+                {{--<div class="media-body">--}}
+                {{--<div class="mb-2">--}}
+                {{--<a class="text-inherit" href="#">--}}
+                {{--<strong>牧野</strong>--}}
+                {{--<span class="text-muted">&#64;snicmakino</span>--}}
+                {{--</a>--}}
+                {{-----}}
+                {{--<time class="small text-muted">6時間</time>--}}
+                {{--</div>--}}
 
-                            {{--<p>--}}
-                                {{--rust面白そうだなー--}}
-                                {{--でも、やりたい事が待ち行列になってる--}}
-                            {{--</p>--}}
-                        {{--</div>--}}
-                    {{--</article>--}}
+                {{--<p>--}}
+                {{--rust面白そうだなー--}}
+                {{--でも、やりたい事が待ち行列になってる--}}
+                {{--</p>--}}
+                {{--</div>--}}
+                {{--</article>--}}
                 {{--</li>--}}
                 {{--<li class="media list-group-item p-4">--}}
-                    {{--<article class="d-flex w-100">--}}
-                        {{--<a class="font-weight-bold text-inherit d-block" href="#">--}}
-                            {{--<img class="media-object d-flex align-self-start mr-3"--}}
-                                 {{--src="{{ asset('images/no-thumb.png') }}">--}}
-                        {{--</a>--}}
-                        {{--<div class="media-body">--}}
-                            {{--<div class="mb-2">--}}
-                                {{--<a class="text-inherit" href="#">--}}
-                                    {{--<strong>牧野</strong>--}}
-                                    {{--<span class="text-muted">&#64;snicmakino</span>--}}
-                                {{--</a>--}}
-                                {{-----}}
-                                {{--<time class="small text-muted">8月15日</time>--}}
-                            {{--</div>--}}
+                {{--<article class="d-flex w-100">--}}
+                {{--<a class="font-weight-bold text-inherit d-block" href="#">--}}
+                {{--<img class="media-object d-flex align-self-start mr-3"--}}
+                {{--src="{{ asset('images/no-thumb.png') }}">--}}
+                {{--</a>--}}
+                {{--<div class="media-body">--}}
+                {{--<div class="mb-2">--}}
+                {{--<a class="text-inherit" href="#">--}}
+                {{--<strong>牧野</strong>--}}
+                {{--<span class="text-muted">&#64;snicmakino</span>--}}
+                {{--</a>--}}
+                {{-----}}
+                {{--<time class="small text-muted">8月15日</time>--}}
+                {{--</div>--}}
 
-                            {{--<p>--}}
-                                {{--サマーインターンの講師してるんだけど、学生は分からない問題を一つずつ試して、トライアンドエラーをしながら前に進んでいる。--}}
-                                {{--そんな姿を見ながら、エンジニアって何年経ってもこの頃と変わらない気持ちと姿勢で、問題に向き合える良い仕事だなと感じた。--}}
-                            {{--</p>--}}
-                        {{--</div>--}}
-                    {{--</article>--}}
+                {{--<p>--}}
+                {{--サマーインターンの講師してるんだけど、学生は分からない問題を一つずつ試して、トライアンドエラーをしながら前に進んでいる。--}}
+                {{--そんな姿を見ながら、エンジニアって何年経ってもこの頃と変わらない気持ちと姿勢で、問題に向き合える良い仕事だなと感じた。--}}
+                {{--</p>--}}
+                {{--</div>--}}
+                {{--</article>--}}
                 {{--</li>--}}
             </ul>
         </div>

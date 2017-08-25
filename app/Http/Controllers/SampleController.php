@@ -52,9 +52,11 @@ class SampleController extends Controller
     public function profile()
     {
         $url_name = \Auth::user()->url_name;
+//        $url_name = DB::table('users')->select('url_name')->where('id', '=', '%id');
         $display_name = \Auth::user()->display_name;
         $user_address = \Auth::user()->email;
-        return view('settings.profile', ['url_name' => $url_name, 'display_name' => $display_name, 'user_address' => $user_address]);
+        $user = Auth::user();
+        return view('settings.profile', ['url_name' => $url_name, 'display_name' => $display_name, 'user_address' => $user_address, 'user' => $user]);
     }
 
 
@@ -72,8 +74,8 @@ class SampleController extends Controller
 //        $animal = Animal::where('name', $name)->firstOrFail();
 //        $tweet = Tweet::where('body', $request)->firstOrFail();
 
-//        $tweets = Tweet::where('body','like', "%$request%");
-        $tweets = Tweet::whereIn('user_id', [Auth::id()])->orWhere('body','like', "%$request%")->orderBy('updated_at', 'desk')->get();
+        $tweets = Tweet::where('body','like', "%$request%");
+//        $tweets = Tweet::whereIn('user_id', [Auth::id()])->Where('body','like', "%$request%")->orderBy('updated_at', 'desk')->get();
 //        dd($tweets);
 //        $tweets = DB::table('tweets')->where('body', 'like', "%{$request->query('search')}%")->get();
 //        $tweet = Tweet::all();
@@ -94,7 +96,7 @@ class SampleController extends Controller
 //        tweets =
 //        dd($url_name);
 //        $tweets = Tweet::whereIn('user_id', [Auth::id()])->orWhere('body','like', "%$r%")->orderBy('updated_at', 'desk')->get();
-        $tweets = DB::table('tweets')->where('user_id', '=', "$id")->get();
+        $tweets = DB::table('tweets')->where('user_id', '=', "$id")->orderBy('updated_at', 'desk')->get();
         $follower_num = DB::table('friendships')->where('follower_id', '=', "$id")->count();
         $followee_num = DB::table('friendships')->where('followee_id', '=', "$id")->count();
         $tweet_num = DB::table('tweets')->where('user_id', '=', "$id")->count();
