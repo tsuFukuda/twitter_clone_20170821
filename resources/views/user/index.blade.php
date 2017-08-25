@@ -91,8 +91,8 @@
     <div class="container">
         <div class="container-inner">
             <img class="rounded-circle media-object" src="{{ asset('images/no-thumb.png') }}">
-            <h3 class="profile-header-user">牧野</h3>
-            <p class="profile-header-bio">Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中</p>
+            <h3 class="profile-header-user">{{ $display_name }}</h3>
+            <p class="profile-header-bio">{{ $url_name }}（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中</p>
         </div>
     </div>
 
@@ -101,19 +101,19 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     ツイート
-                    <strong class="d-block">79</strong>
+                    <strong class="d-block">{{ $tweet_num }}</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     フォロー
-                    <strong class="d-block">30</strong>
+                    <strong class="d-block">{{ $follower_num }}</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     フォロワー
-                    <strong class="d-block">7</strong>
+                    <strong class="d-block">{{ $followee_num }}</strong>
                 </a>
             </li>
         </ul>
@@ -146,6 +146,33 @@
 
         <div class="col-lg-6">
             <ul class="list-group media-list-stream mb-4">
+
+
+                @foreach($tweets as $tweet)
+                    <li class="media list-group-item p-4">
+                        <article class="d-flex w-100">
+                            <a class="font-weight-bold text-inherit d-block" href="#">
+                                <img class="media-object d-flex align-self-start mr-3"
+                                     src="{{ asset('images/no-thumb.png') }}">
+                            </a>
+                            <div class="media-body">
+                                <div class="mb-2">
+                                    <a class="text-inherit" href="#">
+                                        <strong>{{ $display_name }}</strong>
+                                        <span class="text-muted">&#64;{{ $url_name }}</span>
+                                    </a>
+                                    -
+                                    <time class="small text-muted">6時間</time>
+                                </div>
+
+                                <p>
+                                    {{ $tweet->body }}
+                                </p>
+                            </div>
+                        </article>
+                    </li>
+                @endforeach
+
 
                 <li class="media list-group-item p-4">
                     <article class="d-flex w-100">

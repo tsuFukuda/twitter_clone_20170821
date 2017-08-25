@@ -31,4 +31,18 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this -> belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
+    }
+    public function following()
+    {
+        return $this -> belongsToMany('App\User', 'friendships', 'follower_id', 'followee_id');
+    }
+    public function followers()
+    {
+        return $this -> belongsToMany('App\User', 'friendships', 'followee_id', 'follower_id');
+    }
+
 }

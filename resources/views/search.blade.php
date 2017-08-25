@@ -73,7 +73,7 @@
                         <img class="rounded-circle" src="{{ asset('images/no-thumb.png') }}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url('account') }}">
                             <span class="icon icon-cog"></span> 設定
                         </a>
                         <a class="dropdown-item" href="{{ url('logout') }}"
@@ -117,8 +117,8 @@
                             </a>
                             <div class="media-body">
                                 <div class="mb-2">
-                                    <a class="text-inherit" href="#">
-                                        <strong>牧野</strong>
+                                    <a class="text-inherit" href="/profile">
+                                        <strong>{{ $tweet->user->display_name }}</strong>
                                         <span class="text-muted">&#64;snicmakino</span>
                                     </a>
                                     -

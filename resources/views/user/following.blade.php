@@ -91,7 +91,7 @@
     <div class="container">
         <div class="container-inner">
             <img class="rounded-circle media-object" src="{{ asset('images/no-thumb.png') }}">
-            <h3 class="profile-header-user">牧野</h3>
+            <h3 class="profile-header-user">{{ $display_name }}</h3>
             <p class="profile-header-bio">Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中</p>
         </div>
     </div>
@@ -101,19 +101,19 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     ツイート
-                    <strong class="d-block">79</strong>
+                    <strong class="d-block">{{ $tweet_num }}</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     フォロー
-                    <strong class="d-block">30</strong>
+                    <strong class="d-block">{{ $follower_num }}</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     フォロワー
-                    <strong class="d-block">7</strong>
+                    <strong class="d-block">{{ $followee_num }}</strong>
                 </a>
             </li>
         </ul>
@@ -152,16 +152,57 @@
         </div>
 
         <div class="col-lg-9">
-            <ul class="row list-unstyled">
-                <li class="col-xl-4 col-md-6">
-                    <div class="card card-profile mb-4">
-                        <div class="card-header bg-danger"></div>
-                        <div class="card-block">
-                            <a href="#">
-                                <img class="avatar card-profile-img" src="{{ asset('images/no-thumb.png') }}">
-                            </a>
+            {{--<ul class="row list-unstyled">--}}
+                {{--<li class="col-xl-4 col-md-6">--}}
+                    {{--<div class="card card-profile mb-4">--}}
+                        {{--<div class="card-header bg-danger"></div>--}}
+                        {{--<div class="card-block">--}}
+                            {{--<a href="#">--}}
+                                {{--<img class="avatar card-profile-img" src="{{ asset('images/no-thumb.png') }}">--}}
+                            {{--</a>--}}
 
-                            <span class="float-right">
+                            {{--<span class="float-right">--}}
+                            {{--<form action="#" method="POST">--}}
+                                {{--{{ csrf_field() }}--}}
+
+                                {{--<button type="submit" class="btn btn-outline-danger btn-sm following"--}}
+                                        {{--style="width: 6rem;">--}}
+                                    {{--<span>フォロー中</span>--}}
+                                    {{--<span>解除</span>--}}
+                                {{--</button>--}}
+                            {{--</form>--}}
+
+                                {{--<form action="#" method="POST">--}}
+                                {{--{{ csrf_field() }}--}}
+
+                                {{--<button type="submit" class="btn btn-outline-primary btn-sm">フォローする</button>--}}
+                                {{--</form>--}}
+                        {{--</span>--}}
+
+                            {{--<strong class="card-title d-block">--}}
+                                {{--<a class="text-inherit" href="#">牧野</a>--}}
+                            {{--</strong>--}}
+
+                            {{--<p class="mb-4">--}}
+                                {{--Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+
+
+            @foreach($users as $user)
+                <ul class="row list-unstyled">
+                    <li class="col-xl-4 col-md-6">
+                        <div class="card card-profile mb-4">
+                            <div class="card-header bg-danger"></div>
+                            <div class="card-block">
+                                <a href="#">
+                                    <img class="avatar card-profile-img" src="{{ asset('images/no-thumb.png') }}">
+                                </a>
+
+                                <span class="float-right">
                             <form action="#" method="POST">
                                 {{ csrf_field() }}
 
@@ -172,24 +213,26 @@
                                 </button>
                             </form>
 
-                                {{--<form action="#" method="POST">--}}
-                                {{--{{ csrf_field() }}--}}
+                                    {{--<form action="#" method="POST">--}}
+                                    {{--{{ csrf_field() }}--}}
 
-                                {{--<button type="submit" class="btn btn-outline-primary btn-sm">フォローする</button>--}}
-                                {{--</form>--}}
+                                    {{--<button type="submit" class="btn btn-outline-primary btn-sm">フォローする</button>--}}
+                                    {{--</form>--}}
                         </span>
 
-                            <strong class="card-title d-block">
-                                <a class="text-inherit" href="#">牧野</a>
-                            </strong>
+                                <strong class="card-title d-block">
+                                    <a class="text-inherit" href="#">aa</a>
+                                </strong>
 
-                            <p class="mb-4">
-                                Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中
-                            </p>
+                                <p class="mb-4">
+                                    Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            @endforeach
+
 
             <div class="hidden-lg-up">
                 <div class="card card-link-list mb-4">

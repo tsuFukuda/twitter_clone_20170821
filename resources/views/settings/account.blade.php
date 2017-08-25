@@ -60,7 +60,7 @@
                 </li>
             </ul>
 
-            <form action="#" class="form-inline float-right hidden-sm-down">
+            <form action="search" class="form-inline float-right hidden-sm-down">
                 <span {{ $errors->has('search') ? 'has-danger' : '' }}>
                     <input name="search" type="text" class="form-control form-search" placeholder="Search">
                 </span>
@@ -130,7 +130,7 @@
                     <strong>アカウント</strong>
                 </div>
                 <div class="card-block">
-                    <form method="POST" action="#">
+                    <form method="POST" action="account">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 

@@ -26,12 +26,14 @@ Route::post('register', 'Auth\RegisterController@register');
 
 //Route::get('home/create', 'HomeController@create');
 Route::get('home', 'HomeController@index')->name('home');
-Route::post('tweet', 'HomeController@register_tweet_table');
+Route::post('tweet', 'HomeController@register_tweet_table')->name('home');
 
 
 Route::get('account', 'SampleController@account');
+Route::put('account', 'SampleController@re_account');
 Route::get('profile', 'SampleController@profile');
+//Route::get('profile/{id}', 'SampleController@id_profile');
 Route::get('search', 'SampleController@search');
-Route::get('user', 'SampleController@user');
+Route::get('user/{id}', 'SampleController@user');
 Route::get('following', 'SampleController@following');
 Route::get('followers', 'SampleController@followers');
